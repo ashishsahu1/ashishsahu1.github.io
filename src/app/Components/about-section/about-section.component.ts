@@ -14,12 +14,14 @@ export class AboutSectionComponent implements OnInit, OnDestroy {
   ];
   role = this.roles[0];
 
-  // User's photo lives in src/assets. Falls back to an older asset if missing.
-  portrait = 'assets/profile.png';
+  // Background-removed cutout. Falls back to the framed photo, then an older asset.
+  portrait = 'assets/profile-withoutBackground.png';
 
   imgFallback(event: Event): void {
     const img = event.target as HTMLImageElement;
-    if (!img.src.endsWith('dpp2.jpeg')) {
+    if (img.src.includes('profile-withoutBackground')) {
+      img.src = 'assets/profile.png';
+    } else if (!img.src.endsWith('dpp2.jpeg')) {
       img.src = 'assets/dpp2.jpeg';
     }
   }

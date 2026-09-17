@@ -1,35 +1,37 @@
 <section class="ea-hero" id="top">
-  <div class="ea-hero__grid">
-    <div class="ea-hero__lead">
-      <span class="eyebrow reveal">Software Developer — GenAI &amp; Web</span>
-      <h1 class="ea-hero__title">
-        <span class="reveal-line"><span>Ashish</span></span>
-        <span class="reveal-line" data-delay="1"><span>Sahu <em class="ea-hero__mark">&#8618;</em></span></span>
-      </h1>
-      <p class="ea-hero__intro reveal" data-delay="2">
-        I turn <strong>code into feeling</strong> — crafting intelligent digital
-        products with GenAI, LLMs and thoughtful engineering at
-        <strong>H&amp;M Group</strong>.
-      </p>
-      <div class="ea-hero__foot reveal" data-delay="3">
-        <div class="ea-hero__role">
-          <span class="ea-hero__role-now">Currently</span>
-          <span class="ea-hero__role-word">{{ role }}</span>
-        </div>
-        <a class="ea-btn ea-btn--solid" href="#contact">Let's talk</a>
-      </div>
-    </div>
-
-    <div class="ea-hero__portrait reveal" data-delay="2">
-      <div class="ea-hero__frame">
-        <img [src]="portrait" (error)="imgFallback($event)" alt="Portrait of Ashish Sahu">
-      </div>
-      <span class="ea-hero__badge">Available<br>for work</span>
-    </div>
+  <div class="ea-hero__portrait reveal" data-delay="2">
+    <img [src]="portrait" (error)="imgFallback($event)" alt="Portrait of Ashish Sahu">
   </div>
 
+  <span class="ea-hero__vlabel">Software Developer</span>
+
+  <div class="ea-hero__content">
+    <div class="ea-hero__stats reveal" data-delay="1">
+      <div class="ea-hero__stat">
+        <span class="n">3+</span>
+        <span class="l">Years<br>experience</span>
+      </div>
+      <div class="ea-hero__stat">
+        <span class="n">1.5K+</span>
+        <span class="l">Daily requests<br>served</span>
+      </div>
+    </div>
+
+    <h1 class="ea-hero__title">
+      <span class="reveal-line"><span>Ashish</span></span>
+      <span class="reveal-line" data-delay="1"><span>Sahu <em class="ea-hero__mark">&#8618;</em></span></span>
+    </h1>
+
+    <p class="ea-hero__subtitle reveal" data-delay="2">
+      — It's Ashish &middot; <span class="role">{{ role }}</span>
+    </p>
+
+    <a class="ea-btn ea-btn--solid ea-hero__cta reveal" data-delay="3" href="#contact">Let's talk</a>
+  </div>
+
+  <span class="ea-hero__year">&copy; 2026</span>
   <a class="ea-hero__scroll" href="#about">
-    <span>Scroll to explore</span><i class="fa-solid fa-arrow-down"></i>
+    <span>Scroll down</span><i class="fa-solid fa-arrow-down"></i>
   </a>
 </section>
 

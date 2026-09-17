@@ -602,34 +602,97 @@ img {
    HERO
    ========================================================================= */
 .ea-hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 140px var(--gutter) 92px;
-  position: relative;
-}
-
-.ea-hero__grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(30px, 5vw, 80px);
   align-items: center;
-  width: 100%;
+  padding: 130px var(--gutter) 96px;
+  overflow: hidden;
 }
 
-.ea-hero__lead {
+/* Full-bleed cutout portrait, anchored bottom-right, blending into the page */
+.ea-hero__portrait {
+  position: absolute;
+  right: calc(var(--gutter) * -1);
+  bottom: 0;
+  height: min(90vh, 880px);
+  width: auto;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ea-hero__portrait img {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  object-position: bottom right;
+  filter: grayscale(0.12) contrast(1.03);
+  /* Alpha-feather top / bottom / left so the cutout dissolves into the real
+     background colour (theme-aware, no colour seam) */
+  -webkit-mask-image:
+    linear-gradient(to top, transparent 0%, #000 13%, #000 84%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 11%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to top, transparent 0%, #000 13%, #000 84%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 11%);
+  mask-composite: intersect;
+}
+
+/* Settle the portrait into the background with a touch of theme tone */
+[data-theme='dark'] .ea-hero__portrait img {
+  filter: grayscale(0.16) contrast(1.02) brightness(0.82);
+}
+
+[data-theme='light'] .ea-hero__portrait img {
+  filter: grayscale(0.08) contrast(1) brightness(1.03);
+}
+
+.ea-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 60%;
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 22px;
+}
+
+.ea-hero__stats {
+  display: flex;
+  gap: 40px;
+}
+
+.ea-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ea-hero__stat .n {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  color: var(--text);
+  line-height: 1;
+}
+
+.ea-hero__stat .l {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 .ea-hero__title {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(3.4rem, 12vw, 10rem);
-  line-height: 0.9;
-  letter-spacing: 0.01em;
+  font-size: clamp(3.6rem, 13vw, 12rem);
+  line-height: 0.84;
+  letter-spacing: 0.006em;
   text-transform: uppercase;
   margin: 0;
 }
@@ -639,111 +702,43 @@ img {
   color: var(--accent);
 }
 
-.ea-hero__intro {
-  max-width: 44ch;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.35vw, 1.2rem);
-  line-height: 1.6;
-}
-
-.ea-hero__intro strong {
-  color: var(--text);
-  font-weight: 500;
-}
-
-.ea-hero__foot {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  flex-wrap: wrap;
-  margin-top: 6px;
-}
-
-.ea-hero__role {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.ea-hero__role-now {
+.ea-hero__subtitle {
   font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
+  font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2px 0 0;
+}
+
+.ea-hero__subtitle .role {
+  color: var(--accent);
+}
+
+.ea-hero__cta {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+/* Vertical label + year, echoing an editorial layout */
+.ea-hero__vlabel {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--muted-2);
-}
-
-.ea-hero__role-word {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
-  color: var(--accent);
-  line-height: 1;
-}
-
-/* Duotone portrait — white background blends into either theme */
-.ea-hero__portrait {
-  position: relative;
-  justify-self: end;
-  width: 100%;
-  max-width: 460px;
-}
-
-.ea-hero__frame {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border-radius: 230px 230px 28px 28px;
-  overflow: hidden;
-  background: var(--portrait-card);
-  border: 1px solid var(--line);
-  box-shadow: 0 40px 90px -34px color-mix(in srgb, var(--accent) 40%, transparent);
-}
-
-.ea-hero__frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 16%;
-  filter: saturate(1.03) contrast(1.02);
-  transform: scale(1.02);
-  transition: transform 1.4s var(--ease);
-}
-
-/* Feather the photo's white background into the panel edges */
-.ea-hero__frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 58px 20px var(--portrait-card);
-  border-radius: inherit;
-  pointer-events: none;
-}
-
-.ea-hero__portrait:hover .ea-hero__frame img {
-  transform: scale(1.06);
-}
-
-.ea-hero__badge {
-  position: absolute;
-  left: -16px;
-  bottom: 34px;
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent-ink);
-  background: var(--accent);
-  padding: 12px 16px;
-  border-radius: 14px;
-  line-height: 1.35;
-  box-shadow: 0 16px 34px -14px color-mix(in srgb, var(--accent) 60%, transparent);
+  z-index: 2;
 }
 
 .ea-hero__scroll {
   position: absolute;
   left: var(--gutter);
-  bottom: 34px;
+  bottom: 32px;
   font-family: var(--font-mono);
   font-size: 0.66rem;
   letter-spacing: 0.16em;
@@ -752,10 +747,24 @@ img {
   display: flex;
   align-items: center;
   gap: 12px;
+  z-index: 2;
 }
 
 .ea-hero__scroll i {
   animation: ea-bounce 1.8s var(--ease) infinite;
+}
+
+.ea-hero__year {
+  position: absolute;
+  left: 24px;
+  bottom: 32px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--muted-2);
+  z-index: 2;
 }
 
 @keyframes ea-bounce {
@@ -1348,15 +1357,28 @@ img {
     display: flex;
   }
 
-  .ea-hero__grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .ea-hero {
+    align-items: flex-start;
+    padding-top: 116px;
+  }
+
+  .ea-hero__content {
+    max-width: 100%;
   }
 
   .ea-hero__portrait {
-    order: -1;
-    justify-self: center;
-    max-width: 320px;
+    height: 58vh;
+    right: calc(var(--gutter) * -0.3);
+  }
+
+  .ea-hero__portrait img {
+    -webkit-mask-image: linear-gradient(to top, transparent 3%, #000 24%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to top, transparent 3%, #000 24%, #000 88%, transparent 100%);
+  }
+
+  .ea-hero__vlabel,
+  .ea-hero__year {
+    display: none;
   }
 
   .ea-exp__row {

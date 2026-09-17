@@ -70,7 +70,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     if (!dot || !ring) return;
 
     this.zone.runOutsideAngular(() => {
-      const heroFrame = document.querySelector<HTMLElement>('.ea-hero__frame');
+      const heroFrame = document.querySelector<HTMLElement>('.ea-hero__portrait img');
       let px = 0;
       let py = 0;
       const loop = () => {
@@ -80,8 +80,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         ring.style.transform = `translate(${this.ring.x}px, ${this.ring.y}px) translate(-50%, -50%)`;
 
         if (heroFrame && !this.reduceMotion) {
-          const tx = (this.mouse.x / window.innerWidth - 0.5) * 18;
-          const ty = (this.mouse.y / window.innerHeight - 0.5) * 18;
+          const tx = (this.mouse.x / window.innerWidth - 0.5) * 10;
+          const ty = (this.mouse.y / window.innerHeight - 0.5) * 10;
           px += (tx - px) * 0.06;
           py += (ty - py) * 0.06;
           heroFrame.style.transform = `translate(${px}px, ${py}px)`;
