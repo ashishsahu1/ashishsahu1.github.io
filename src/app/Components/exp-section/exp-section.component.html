@@ -1,14 +1,26 @@
-<div class="">
-    <div *ngFor="let item of exp">
-        <div class="timeline-item pl-4">
-            <div class="timeline-content">
-                <p class="heading">{{item.sdate}}  -  {{item.edate}}</p>
-                <p class="title is-4">{{item.firm}}</p>
-                <p class="subtitle is-5">{{item.title}}</p>
-                <p>{{item.desc}}</p>
-            </div>
+<section class="ea-section" id="experience">
+  <div class="ea-container">
+    <div class="ea-section__head">
+      <div>
+        <span class="eyebrow">Career</span>
+        <h2 class="ea-section__title reveal">Experience</h2>
+      </div>
+      <span class="ea-section__index reveal">/ 02</span>
+    </div>
+
+    <div class="ea-exp__list">
+      <article class="ea-exp__row reveal" *ngFor="let item of exp; let i = index">
+        <span class="ea-exp__idx">0{{ i + 1 }}</span>
+        <div>
+          <h3 class="ea-exp__firm">{{ item.firm }}</h3>
+          <div class="ea-exp__role">{{ item.title }}</div>
+          <div class="ea-exp__theme">{{ item.theme }}</div>
         </div>
-        <hr>
-    </div>   
-    
-</div>
+        <ul class="ea-exp__desc">
+          <li *ngFor="let p of item.points">{{ p }}</li>
+        </ul>
+        <div class="ea-exp__date">{{ item.sdate }} — {{ item.edate }}</div>
+      </article>
+    </div>
+  </div>
+</section>

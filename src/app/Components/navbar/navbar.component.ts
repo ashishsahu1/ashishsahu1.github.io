@@ -1,34 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  showBurgerMenu: boolean = false;
-  constructor() {}
+  showBurgerMenu = false;
+  scrolled = false;
 
-  modelClass:string = "model";
-  contactClick(){
-    if(this.modelClass == "model"){
-      this.modelClass = this.modelClass+" "+"is-active"
-    }else{
-      this.modelClass = "model"
-    }
-     
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.scrolled = window.scrollY > 40;
   }
 
-  
-  modelClass2:string = "model";
-  expClick(){
-    if(this.modelClass2 == "model"){
-      this.modelClass2 = this.modelClass2+" "+"is-active"
-    }else{
-      this.modelClass2 = "model"
-    }
-     
+  toggleMenu(): void {
+    this.showBurgerMenu = !this.showBurgerMenu;
+    document.body.classList.toggle('is-locked', this.showBurgerMenu);
   }
 
+  closeMenu(): void {
+    this.showBurgerMenu = false;
+    document.body.classList.remove('is-locked');
+  }
 
+  toggleTheme(): void {
+    const root = document.documentElement;
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch (e) {
+      /* storage unavailable — theme still applies for this session */
+    }
+  }
 }

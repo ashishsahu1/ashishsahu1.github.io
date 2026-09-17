@@ -1,14 +1,24 @@
-<div class="techlist-section container">
-    <div class="techlist" *ngFor="let item of stack_list | slice:0:show; let i=index ">
-        <div [style.background-color]="item.color_code" class="techlist-item">
-            <app-list-section-item class="stack-itm" [itm]="item"></app-list-section-item>
-        </div>
+<section class="ea-section" id="skills">
+  <div class="ea-container">
+    <div class="ea-section__head">
+      <div>
+        <span class="eyebrow">Capabilities</span>
+        <h2 class="ea-section__title reveal">Skills &amp; Stack</h2>
+      </div>
+      <span class="ea-section__index reveal">/ 03</span>
     </div>
-</div>
-<div class="more" *ngIf="show < stack_list.length" (click)="increaseShow()">
-    <span class="icon">
-        <!-- class="devicon-adonisjs-original tech-logo" -->
-        <i class="fa fa-arrow-down"></i>
-    </span>
-    <span>show more</span>
-</div>
+
+    <div class="ea-skills__grid">
+      <div class="ea-skills__cat reveal" *ngFor="let cat of categories; let i = index"
+        [attr.data-delay]="i % 5">
+        <h3>{{ cat.title }}</h3>
+        <ul>
+          <li *ngFor="let s of cat.items">
+            <span>{{ s.name }}</span>
+            <i *ngIf="s.icon" class="{{ s.icon }}"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

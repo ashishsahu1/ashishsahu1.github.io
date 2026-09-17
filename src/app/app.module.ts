@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Pages/home/home.component';
@@ -31,7 +30,6 @@ import { ExpSectionComponent } from './Components/exp-section/exp-section.compon
   ],
   imports: [
     BrowserModule,
-    AngularTypewriterEffectModule,
     FormsModule
   ],
   providers: [],

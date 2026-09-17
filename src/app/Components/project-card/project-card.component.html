@@ -1,24 +1,23 @@
-<div class="card">
-    <div class="card-image">
-        <figure class="image is-4by3">
-            <img [src]=project.image alt="Placeholder image">
-        </figure>
+<article class="ea-card reveal">
+  <div class="ea-card__media">
+    <img [src]="project.image" [alt]="project.title" loading="lazy">
+  </div>
+  <div class="ea-card__body">
+    <span class="ea-card__summary">{{ project.summary }}</span>
+    <h3 class="ea-card__title">
+      {{ project.title }}
+      <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8rem;opacity:0.5;"></i>
+    </h3>
+    <p class="ea-card__desc">{{ project.desc }}</p>
+    <div class="ea-card__foot">
+      <a [href]="project.github" target="_blank" rel="noopener"
+        class="ea-card__link" [class.is-disabled]="!project.github">
+        <i class="fa-brands fa-github"></i> Code
+      </a>
+      <a [href]="project.deployed" target="_blank" rel="noopener"
+        class="ea-card__link" [class.is-disabled]="!project.deployed">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+      </a>
     </div>
-    <div class="card-content">
-        <div class="media">
-            <div class="media-content">
-                <p class="title is-4">{{ project.title }}</p>
-                <p class="subtitle is-6"><b>{{project.summary}}</b></p>
-            </div>
-        </div>
-
-        <div class="content dsc">
-            {{project.desc}}
-            <br>
-        </div>
-    </div>
-    <footer class="card-footer">
-        <a [href]="project.github" target="_blank" class="card-footer-item g-btn">Github</a>
-        <a [href]="project.deployed" target="_blank" class="card-footer-item l-btn">Live</a>
-    </footer>
-</div>
+  </div>
+</article>

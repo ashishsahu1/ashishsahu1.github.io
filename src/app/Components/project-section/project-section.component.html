@@ -1,42 +1,51 @@
-<div class="project-main">
-    <h1 class="title is-3">Personal Projects</h1>
-    <p class="subtitle is-7">Uncheck "All" and then check others </p>
-    <div class="filter">
-        <form>
-            <!-- <div *ngFor="let option of checkBX">
-                <label for="first">{{option.id}}</label>
-                <input type="{{option.type}}" value="{{option.id}}" (change)="onChange($event)" id="{{option.id}}">
-                <br>
-            </div> -->
-            <div class="article">
-                <input type="checkbox" name="All" value="All" [(ngModel)]="allBtn" (change)="onChange($event)" id="All">
-                <div>All</div>
-            </div>
-            <div class="article" *ngFor="let option of checkBX">
-                <input type="{{option.type}}" value="{{option.id}}" (change)="onChange($event)" id="{{option.id}}">
-                <div>{{option.id}}</div>
-            </div>
-           
-        </form>
+<section class="ea-section" id="work">
+  <div class="ea-container">
+    <div class="ea-section__head">
+      <div>
+        <span class="eyebrow">Selected work</span>
+        <h2 class="ea-section__title reveal">Featured<br>Projects</h2>
+      </div>
+      <span class="ea-section__index reveal">/ 04</span>
     </div>
-    
-        <div *ngIf="allBtn; else elseBlock">
-            <div class="project-section">
-                <div class="project-cards" *ngFor="let project of projects">
-                    <app-project-card [project]="project"></app-project-card>
-                </div>
-            </div>
+
+    <!-- Enterprise / professional highlights -->
+    <div class="ea-work__featured">
+      <article class="ea-fwork reveal" *ngFor="let f of featured; let i = index">
+        <span class="ea-fwork__idx">0{{ i + 1 }}</span>
+        <div>
+          <h3 class="ea-fwork__name">{{ f.name }}</h3>
+          <div class="ea-fwork__tags">
+            <span *ngFor="let t of f.tags">{{ t }}</span>
+          </div>
         </div>
-        <ng-template #elseBlock>
-            <div class="project-section">
-                <div class="project-cards" *ngFor="let project of finalData">
-                    <app-project-card [project]="project"></app-project-card>
-                </div>
-            </div>
-        </ng-template>
-        <!-- <div class="project-cards" *ngFor="let project of finalData">
-            <app-project-card [project]="project"></app-project-card>
-        </div> -->
+        <p class="ea-fwork__meta">{{ f.meta }}</p>
+        <span class="ea-fwork__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+      </article>
     </div>
 
+    <!-- Open-source & personal projects -->
+    <div class="eyebrow reveal" style="margin-bottom: 22px;">Open source &amp; personal</div>
 
+    <div class="ea-work__filter reveal">
+      <label class="ea-chip" [class.is-active]="allBtn">
+        <input type="checkbox" name="All" value="All" [(ngModel)]="allBtn"
+          (change)="onChange($event)" id="All" hidden>
+        All
+      </label>
+      <label class="ea-chip" *ngFor="let option of checkBX">
+        <input type="{{ option.type }}" value="{{ option.id }}"
+          (change)="onChange($event)" id="{{ option.id }}" hidden>
+        {{ option.id }}
+      </label>
+    </div>
+
+    <div class="ea-grid" *ngIf="allBtn; else elseBlock">
+      <app-project-card *ngFor="let project of projects" [project]="project"></app-project-card>
+    </div>
+    <ng-template #elseBlock>
+      <div class="ea-grid">
+        <app-project-card *ngFor="let project of finalData" [project]="project"></app-project-card>
+      </div>
+    </ng-template>
+  </div>
+</section>

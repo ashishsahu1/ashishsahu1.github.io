@@ -6,6 +6,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./project-section.component.css'],
 })
 export class ProjectSectionComponent {
+  featured = [
+    {
+      name: 'AskLEA',
+      meta: 'Enterprise GenAI assistant — conversational access to enterprise knowledge, workflows and decision support at H&M Group.',
+      tags: ['LLMs', 'RAG', 'AI Agents', 'MCP'],
+    },
+    {
+      name: 'Fabric Costing Tool',
+      meta: 'Mission-critical costing platform processing 1,200–1,500+ daily requests for global sourcing teams.',
+      tags: ['Angular', 'Node.js', 'Enterprise'],
+    },
+    {
+      name: 'LEA UI',
+      meta: 'Modular micro-frontend platform enabling independent deployments across enterprise applications.',
+      tags: ['Micro-Frontend', 'TypeScript', 'REST'],
+    },
+    {
+      name: 'Supplier Recommendation',
+      meta: 'Bottom-up, AI-driven supplier ranking with explainable confidence scoring and decision support.',
+      tags: ['AI/ML', 'Python', 'Ranking'],
+    },
+  ];
+
   projects: any = [
     {
       image:
