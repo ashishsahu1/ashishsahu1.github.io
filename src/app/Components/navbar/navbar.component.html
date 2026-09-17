@@ -14,9 +14,7 @@
       <i class="ea-moon fa-solid fa-moon"></i>
       <i class="ea-sun fa-solid fa-sun"></i>
     </button>
-    <a class="ea-btn ea-nav__cta-desktop"
-      href="https://drive.google.com/file/d/1wWsK8pV3uEF0QKwpFfM_qbPKVgYty_Ax/view?usp=sharing"
-      target="_blank" rel="noopener">Résumé</a>
+    <button class="ea-btn ea-nav__cta-desktop" type="button" (click)="openResume()">Résumé</button>
     <button class="ea-nav__burger" [class.open]="showBurgerMenu"
       aria-label="Toggle menu" (click)="toggleMenu()">
       <span></span><span></span><span></span>
@@ -30,4 +28,24 @@
   <a href="#skills" (click)="closeMenu()">Skills</a>
   <a href="#achievements" (click)="closeMenu()">Recognition</a>
   <a href="#contact" (click)="closeMenu()">Contact</a>
+  <a href="javascript:void(0)" (click)="openResume(); closeMenu()">Résumé</a>
+</div>
+
+<div class="ea-resume" [class.open]="showResume">
+  <div class="ea-resume__backdrop" (click)="closeResume()"></div>
+  <div class="ea-resume__panel" role="dialog" aria-modal="true" aria-label="Résumé">
+    <div class="ea-resume__bar">
+      <span class="ea-resume__title">Résumé — Ashish Sahu</span>
+      <div class="ea-resume__actions">
+        <a class="ea-resume__btn" [attr.href]="resumeUrl" download>Download</a>
+        <a class="ea-resume__btn" [attr.href]="resumeUrl" target="_blank" rel="noopener">Open in tab</a>
+        <button class="ea-resume__close" type="button" (click)="closeResume()"
+          aria-label="Close résumé">&times;</button>
+      </div>
+    </div>
+    <div class="ea-resume__frame">
+      <iframe *ngIf="showResume" src="assets/Ashish_Sahu-Aug2026.pdf#view=FitH"
+        title="Résumé of Ashish Sahu"></iframe>
+    </div>
+  </div>
 </div>

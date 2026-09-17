@@ -8,10 +8,27 @@ import { Component, HostListener } from '@angular/core';
 export class NavbarComponent {
   showBurgerMenu = false;
   scrolled = false;
+  showResume = false;
+  resumeUrl = 'assets/Ashish_Sahu-Aug2026.pdf';
 
   @HostListener('window:scroll')
   onScroll(): void {
     this.scrolled = window.scrollY > 40;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.showResume) this.closeResume();
+  }
+
+  openResume(): void {
+    this.showResume = true;
+    document.body.classList.add('is-locked');
+  }
+
+  closeResume(): void {
+    this.showResume = false;
+    document.body.classList.remove('is-locked');
   }
 
   toggleMenu(): void {
